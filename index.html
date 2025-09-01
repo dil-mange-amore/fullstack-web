@@ -505,6 +505,165 @@
             }
         }
     </style>
+
+        <style>
+            .profile-card {
+                width: 100%;
+                max-width: 400px;
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                transition: transform 0.3s ease;
+            }
+            
+            .profile-card:hover {
+                transform: translateY(-5px);
+            }
+            
+            .profile-header {
+                position: relative;
+                padding: 30px 20px 60px;
+                text-align: center;
+                background: rgba(0, 0, 0, 0.4);
+            }
+            
+            .profile-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0.3;
+                z-index: -1;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 3px solid white;
+                box-shadow: 0 0 20px rgba(191, 255, 252, 0.8);
+                margin-bottom: 15px;
+            }
+            
+            .profile-name {
+                color: white;
+                font-size: 1.8rem;
+                margin-bottom: 5px;
+                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            }
+            
+            .profile-title {
+                color: #BFFFFC;
+                font-size: 1rem;
+                font-weight: 400;
+            }
+            
+            .profile-content {
+                padding: 20px;
+            }
+            
+            .xp-badge {
+                display: inline-flex;
+                align-items: center;
+                background: linear-gradient(45deg, #FF0080, #FF8C00);
+                color: white;
+                padding: 8px 15px;
+                border-radius: 50px;
+                margin-bottom: 20px;
+                font-weight: 600;
+                box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4);
+            }
+            
+            .xp-badge i {
+                margin-right: 8px;
+                font-size: 1.2rem;
+            }
+            
+            .profile-stats {
+                display: flex;
+                justify-content: space-around;
+                margin: 25px 0;
+            }
+            
+            .stat {
+                text-align: center;
+            }
+            
+            .stat-number {
+                display: block;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: white;
+                text-shadow: 0 0 10px rgba(191, 255, 252, 0.8);
+            }
+            
+            .stat-label {
+                font-size: 0.9rem;
+                color: #BFFFFC;
+            }
+            
+            .profile-description {
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.6;
+                margin-bottom: 25px;
+                text-align: center;
+            }
+            
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 20px;
+            }
+            
+            .social-link {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(45deg, #0077B5, #00A0DC);
+                color: white;
+                text-decoration: none;
+                font-size: 1.3rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 119, 181, 0.4);
+            }
+            
+            .social-link:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(0, 119, 181, 0.6);
+            }
+            
+            .view-profile-btn {
+                display: block;
+                width: 100%;
+                padding: 12px;
+                background: linear-gradient(45deg, #00B4DB, #0083B0);
+                color: white;
+                text-align: center;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                margin-top: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 180, 219, 0.4);
+            }
+            
+            .view-profile-btn:hover {
+                background: linear-gradient(45deg, #0083B0, #00B4DB);
+                box-shadow: 0 8px 20px rgba(0, 180, 219, 0.6);
+                transform: translateY(-2px);
+            }
+        </style>
+
 </head>
 <body>
     <!-- Header & Navigation -->
@@ -557,15 +716,61 @@
                     <p>Now, through Fullstack Consulting, I'm leveraging my expertise to help independent developers and studios overcome production challenges, optimize workflows, and bring their creative visions to life.</p>
                     <a href="#contact" class="btn">Let's Connect</a>
                 </div>
-                <div class="about-image" style="text-align: center;">
-                    <img src="https://images.pexels.com/photos/17904605/pexels-photo-17904605.jpeg?_gl=1*1ljsuk1*_ga*ODQ0MjAwNDAxLjE3NTY0OTEzOTI.*_ga_8JE65Q40S6*czE3NTY0OTEzOTIkbzEkZzEkdDE3NTY0OTE4ODMkajU5JGwwJGgw" style="width: 85%; height: auto;" alt="Game Development">
-                    <div class="exp-badge">
-                        <span>XP</span>
-                        <span>20 Years</span>
-                        <a href="https://www.linkedin.com/in/amol-more-b0202622/" target="_blank">
-                        <img src=https://media.licdn.com/dms/image/v2/D4D03AQHV4YsJ_fCSbg/profile-displayphoto-scale_400_400/B4DZhaZUeoHwAg-/0/1753863244818?e=1759363200&v=beta&t=niw4BBOAzdzpPVOGY18LfvyEuvoGtLG10qTA20ycALU style="width: 60%; height: auto;border: 2px solid #BFFFFC;box-shadow: 0 0 10px #BFFFFC, 0 0 20px #BFFFFC, 0 0 30px #BFFFFC; border-radius: 25px;" alt="LinkedIn Profile" /></a>
-                    </div>
+
+        <div class="profile-card">
+                <div class="profile-header">
+                    <img src="https://images.pexels.com/photos/17904605/pexels-photo-17904605.jpeg?_gl=1*1ljsuk1*_ga*ODQ0MjAwNDAxLjE3NTY0OTEzOTI.*_ga_8JE65Q40S6*czE3NTY0OTEzOTIkbzEkZzEkdDE3NTY0OTE4ODMkajU5JGwwJGgw" alt="Background" class="profile-bg">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQHV4YsJ_fCSbg/profile-displayphoto-scale_400_400/B4DZhaZUeoHwAg-/0/1753863244818?e=1759363200&v=beta&t=niw4BBOAzdzpPVOGY18LfvyEuvoGtLG10qTA20ycALU" alt="Game Developer" class="profile-image">
+                    <h2 class="profile-name">Amol More</h2>
+                    <p class="profile-title">Producer | QC Manager | Principal Consultant</p>
                 </div>
+                
+                <div class="profile-content">
+                    <div class="xp-badge">
+                        <i class="fas fa-award"></i>
+                        <span>20 Years XP</span>
+                    </div>
+                    
+                    <p class="profile-description">
+                        Passionate game developer/tester/gamer with two decades of service creating immersive gaming experiences across multiple platforms.
+                    </p>
+                    
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">AAA Credits</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">8000 hrs</span>
+                            <span class="stat-label">Of Personal Gaming</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.exophase.com/xbox/user/amo1mor3/" class="social-link">
+                            <i class="fab fa-xbox"></i>
+                        </a>
+                        <a href="https://www.exophase.com/steam/user/modernstudboy/" target="_blank" class="social-link">
+                            <i class="fab fa-steam-symbol"></i>
+                        </a>
+                        <a href="https://www.exophase.com/psn/user/dil_mange_amore/" class="social-link">
+                            <i class="fab fa-playstation"></i>
+                        </a>
+                        <a href="https://www.mobygames.com/person/370360/amol-more/" class="social-link">
+                            <i class="fa fa-credit-card-alt"></i>
+                        </a>
+                    </div>
+                    
+                    <a href="https://www.linkedin.com/in/amol-more-b0202622/" target="_blank" class="view-profile-btn">
+                        View LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+
             </div>
         </div>
     </section>
