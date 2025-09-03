@@ -662,6 +662,39 @@
                 box-shadow: 0 8px 20px rgba(0, 180, 219, 0.6);
                 transform: translateY(-2px);
             }
+
+            .console-strip {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 16px;
+                padding: 10px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                margin-bottom: 40px;
+            }
+            .icon-wrapper {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0px;
+                background: rgba(255, 255, 255, 0.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            .nintendo .icon-wrapper { background: linear-gradient(135deg, #e60000, #8b0000); }
+            .xbox .icon-wrapper { background: linear-gradient(135deg, #107c10, #0e470e); }
+            .playstation .icon-wrapper { background: linear-gradient(135deg, #426193, #1152c2); }
+            .luna .icon-wrapper { background: linear-gradient(135deg, #c62aff, #9d00a8); }
+            .stadia .icon-wrapper { background: linear-gradient(135deg, #f8f8f8, #ffe8e9); }
+            .pc .icon-wrapper { background: linear-gradient(135deg, #666666, #333333); }
+
         </style>
 
 </head>
@@ -735,6 +768,45 @@
                         Passionate game developer/tester/gamer with two decades of service creating immersive gaming experiences across multiple platforms.
                     </p>
                     
+            <div class="console-strip">
+                <div class="console nintendo">
+                        <div class="icon-wrapper">
+                            <img src="https://img.icons8.com/?size=100&id=49777&format=png&color=000000" alt="Nintendo" style="width: 60%; height: 60%; object-fit: contain;">
+                        </div>
+                </div>
+            
+                <div class="console xbox">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=P74xrK8LVXNo&format=png&color=000000" alt="Nintendo" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+            
+                <div class="console playstation">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=RrF4U2ogcU6A&format=png&color=000000" alt="Nintendo" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+            
+                <div class="console luna">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=A6q4SjCUkb11&format=png&color=000000" alt="Nintendo" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+            
+                <div class="console stadia">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=LmMXAgyoTVLO&format=png&color=000000" alt="Nintendo" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+            
+                <div class="console pc">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=9913&format=png&color=000000" alt="Nintendo" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+                <h5> Platform Experience</h5>
+            </div>
+
                     <div class="profile-stats">
                         <div class="stat">
                             <span class="stat-number">150+</span>
