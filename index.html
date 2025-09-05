@@ -216,12 +216,13 @@
         
         .about-content {
             display: flex;
-            align-items: center;
+            align-items: top;
             gap: 50px;
         }
         
         .about-text {
             flex: 1;
+            position: relative;
         }
         
         .about-text h3 {
@@ -694,7 +695,202 @@
             .luna .icon-wrapper { background: linear-gradient(135deg, #c62aff, #9d00a8); }
             .stadia .icon-wrapper { background: linear-gradient(135deg, #f8f8f8, #ffe8e9); }
             .pc .icon-wrapper { background: linear-gradient(135deg, #666666, #333333); }
-
+            
+            .carousel-container {
+            position: absolute;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            padding: 10px 20px;
+            width: 100%;
+            margin-top: 20px;
+            }
+        
+            .carousel {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+            margin: 0 -15px;
+    
+            }
+        
+            .carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+            }
+        
+            .recommendation {
+            flex: 0 0 calc(100% - 30px);
+            margin: 0 15px;
+            padding: 5px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #0077b5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+        
+            .recommendation:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+        
+            .recommender-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            }
+        
+            .recommender-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #0077b5;
+            font-size: 24px;
+            flex-shrink: 0;
+            }
+        
+            .recommender-details {
+            flex-grow: 1;
+            }
+        
+            .recommender-name {
+            font-weight: 600;
+            color: #0077b5;
+            margin-bottom: 5px;
+            font-size: 14px;
+            }
+        
+            .recommender-title {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+            }
+        
+            .recommender-company {
+            color: #888;
+            font-size: 8px;
+            }
+        
+            .recommendation-text {
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-size: 12px;
+            position: relative;
+            padding-left: 20px;
+            }
+        
+            .recommendation-text:before {
+            content: """;
+            font-size: 50px;
+            color: #0077b5;
+            position: absolute;
+            left: -10px;
+            top: -15px;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+            }
+        
+            .recommendation-date {
+            color: #888;
+            font-size: 13px;
+            text-align: right;
+            }
+        
+            .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top:10px;
+            }
+        
+            .nav-btn {
+            background: #0077b5;
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            }
+        
+            .nav-btn:hover {
+            background: #005582;
+            }
+        
+            .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            }
+        
+            .dot {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            }
+        
+            .dot.active {
+            background: #0077b5;
+            }
+        
+            .linkedin-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #0077b5;
+            font-weight: 600;
+            }
+        
+            .linkedin-brand i {
+            font-size: 24px;
+            margin-right: 8px;
+            }
+        
+            @media (max-width: 768px) {
+            .carousel-container {
+                padding: 20px;
+            }
+            
+            .recommendation {
+                flex: 0 0 calc(100% - 20px);
+                margin: 0 10px;
+            }
+            
+            .recommender-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .recommender-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .rounded-avatar {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #fff;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+        }
         </style>
 
 </head>
@@ -748,6 +944,199 @@
                     <p>My expertise spans the entire game development lifecycle - from concept to console. I've managed cross-functional teams, implemented Agile-Scrum methodologies, and ensured the successful delivery of high-quality gaming experiences.</p>
                     <p>Now, through Fullstack Consulting, I'm leveraging my expertise to help independent developers and studios overcome production challenges, optimize workflows, and bring their creative visions to life.</p>
                     <a href="#contact" class="btn">Let's Connect</a>
+                    
+                    
+                    <div class="carousel-container">
+            <div class="carousel" id="recommendationCarousel">
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/D4E03AQH9zk1vRLrsHw/profile-displayphoto-scale_400_400/B4EZi08W4QGoAg-/0/1755382378710?e=1759968000&v=beta&t=XCUNyZry6gBZ94G2XI1jT_3oqTlRQyh5yY1wcVw9NPs" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Samira Chabani</div>
+                            <div class="recommender-title">Group Senior HR Director</div>
+                            <div class="recommender-company">Currently @Savvy Games Group, Saudi Arabia</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        As the HR Director of Ubisoft India studios at this time, I can attest that Amol's progression from Quality Control to Production demonstrates remarkable potential and expertise, with a strong focus on player experience. This career growth highlights not only his dedication and adaptability but also his development into roles with greater responsibility. Amol was a highly collaborative and committed manager who played a key role in leading a large team on AAA game testing. His clear and transparent communication fostered trust and alignment across teams, ensuring high standards and accountability. With his extensive experience and strategic approach, he consistently delivered strong results, contributing to both team performance and studio growth. Amol's expertise, dedication, and integrity made him an invaluable asset to the organization and a respected leader at Ubisoft India."
+                    </div>
+                    <div class="recommendation-date">Dec 10, 2023</div>
+                </div>
+                
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/D5603AQFEqiVwZmn8ZQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1682661945563?e=1759968000&v=beta&t=1ODw0D4YVdd9ubodiQCmoSa5fcNH-Jm3Eagf_JsVG-I" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Abhijeet Bajaj</div>
+                            <div class="recommender-title">Managing Director</div>
+                            <div class="recommender-company">Currently @Rightsline India</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        I worked very closely with Amol to expand the technical standards division offerings within Ubisoft India quality department. Amol was critical in creating a strong set of processes and an efficient team under him to achieve this goal. He is a data-driven, technically strong leader who can drive changes at team, project and department level effectively. 
+It was a pleasure working with him and I would highly recommedn him for his project management ability and deep knowledge of production processes at each stage of development.
+                    </div>
+                    <div class="recommendation-date">Nov 4, 2024</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/C4E03AQExeElZVmC_TA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1517735368827?e=1759968000&v=beta&t=lrK21CFu9ftx9wmxrojuRGO-xoRcFB7xQdwozkohDUE" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Mircea Nutu</div>
+                            <div class="recommender-title">Lead Data Analyst</div>
+                            <div class="recommender-company">Currently @Ubisoft Bucharest</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        My collaboration with Amol carried over a long time and we worked together at building the 1st party compliance department at Ubisoft Pune Studio.
+Our discussions were very productive, and he was able to look at an issue/situation from different angles and based on his observations and suggestions, we modified ideas or went with better course of action.
+During this time, Amol displayed maturity when working with people and the fairness he showed towards people were the most important reasons for the good dynamics in the teams he managed. Due to this people trusted and followed him.
+I found my collaboration with Amol very good, as he was a very reliable partner and the steps agreed were always achieved.
+                    </div>
+                    <div class="recommendation-date">Dec 31, 2023</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/D4D03AQFciunY7T7dQQ/profile-displayphoto-shrink_400_400/B4DZacmomTG0Ak-/0/1746384096495?e=1759968000&v=beta&t=2mxALMep-Hgsae_6PjD6TYDCOtBdqVh42sr0NNF0WG4" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Tomal Banerjee</div>
+                            <div class="recommender-title">Producer</div>
+                            <div class="recommender-company">Currently @Ubisoft India</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol has been my direct manager for almost 5 years of my career. It has always been a learning experience working under him. He challenged us in different ways to understand our perspective, test our skills and push us to think of innovative solutions.
+Amol is a detail oriented person, good with root cause analysis, change management, time management, people management, risk management, conflict resolution. He is an excellent people manager and people working with him never feel the barrier between a manager and team member. He is highly approachable and always open for discussion.
+Amol has a vast experience of the games industry and has been working for more than 12+ years in the same. He has worked with diverse teams and individuals throughout his career which helps him blend easily in any new team or project. 
+Amol does not shy away from challenges and always taken them head on! He leads from the front and also enables team members to learn leadership qualities.
+He would definitely be an asset to any team or organization he works with. Good luck!
+                    </div>
+                    <div class="recommendation-date">Feb 16, 2023</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/C4D03AQGNyKQr9nkHjA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1604699617731?e=1759968000&v=beta&t=ZThBx15Sw9Cuc7Wb6Ktp1NCb5RKemJWkGbo1jV4l7Xs" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Francesca Scelfo</div>
+                            <div class="recommender-title">Producer</div>
+                            <div class="recommender-company">Currently @Ubisoft Paris</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol is a very precise and reliable Associate Producer, always able to provide the relavant information and keep up his team motivation even in the more complicated moments. Good communicator and always with a smile on his face, precious partner for collaboration and good at finding solutions for tricky situations. 
+                    </div>
+                    <div class="recommendation-date">Dec 05, 2022</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/C4E03AQGep0VXCka7Bg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516269275670?e=1759968000&v=beta&t=rhoXqdwbA76wWp0G_N37KIaZRLTefTbLRYVEknxAdms" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Razvan Rotunjanu</div>
+                            <div class="recommender-title">Chief Operating Officer</div>
+                            <div class="recommender-company">Currently @WHYTTEST Bucharest</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Working with Amol as part of Pune QC seniors to put the basis and then enlarge the studio's footprint within the Ubisoft Group has been a real pleasure. His overall organization, passion for games, good understanding of the business and interest shown towards its technicalities represent just a few of Amol strengths, which coupled with his very good social skills and nice personality make him a great fit to any organization, that I truly recommend!
+                    </div>
+                    <div class="recommendation-date">Oct 14, 2022</div>
+                </div>
+                    <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/C4D03AQHQCxFw4MdiSw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1623697393860?e=1759968000&v=beta&t=fHQ_i-DY1jch43Oy3qW_FF_jLtSyyQ3ewcw0-inIk-8" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Pierre Jouen</div>
+                            <div class="recommender-title">Vice President</div>
+                            <div class="recommender-company">Currently @Ubisoft HQ</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol is an industry veteran and a true quality control advocate.
+As QC Manager for specialized teams, Amol has build a diverse team of world class experts over the years.
+Amol is a problem solver and is always keen to build new solutions, innovate or try a different approach.
+It was a pleasure working with Amol within QC teams, he is a great leader and people manager.
+                    </div>
+                    <div class="recommendation-date">Jul 29, 2022</div>
+                </div>
+                                    <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/C5103AQEuxoQb2aQE7Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1517433977047?e=1759968000&v=beta&t=ZgnsPt7FqeYz6AHJQAijAgvKMVEc21H5CeH5txYPF6U" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Amelie Barazer</div>
+                            <div class="recommender-title">Producer</div>
+                            <div class="recommender-company">Currently @Ubisoft Paris</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol is doing a great job as an Associate Producer. He’s passionate about the projects he’s following, rigourous and good at reporting and anticipating potential dependencies. He has strong knowledge with JIRA and has the ability to identify the right stakeholders to inform or contact. I’ve been collaborating with him and his team on two unannounced project and we build a trustful relationship between Ubisoft Mumbai and Ubisoft HQ.
+                    </div>
+                    <div class="recommendation-date">Jun 2, 2022</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/D4D03AQGpmHQZk2mycg/profile-displayphoto-shrink_400_400/B4DZVBZnmRHAAo-/0/1740558990318?e=1759968000&v=beta&t=irFhkwec6QgVLDfv6gUE2RSEzUE5feO8-KhYQ1T7W40" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Aniruddha Pawar</div>
+                            <div class="recommender-title">QC Director</div>
+                            <div class="recommender-company">Currently @Ubisoft India</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol has been an enthusiastic and thorough manager, he's innovative and pushes his teams towards continuous improvement. He has a great relationship with his partners and team thanks to his interpersonal skills. As a leader within Ubisoft India he always led by example, owing to his overall technical skills and soft skills he is a valuable contributor to our projects. The success achieved in his job required extensive knowledge and dedication. He learns quickly and I would have no doubt in working with Amol once again in the future.
+                    </div>
+                    <div class="recommendation-date">Sept 20, 2022</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="https://media.licdn.com/dms/image/v2/C4E03AQGKF9e6lR5oEg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1623499011334?e=1759968000&v=beta&t=WIJYwYxjWE_RGSL_9s3hoOYJT0HDB1ltAToLTTJkr7w" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Apoorva Sao</div>
+                            <div class="recommender-title">Head of QA APAC</div>
+                            <div class="recommender-company">Currently @Accedo Hong-Kong</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol is a great leader who ensures that everything runs smoothly and his team is taken care of, a very approachable person who knows how a team should be nourished with growth plans and strategies in place. He has a good long-term thinking about the team and the drive to tackle harder problems. He is someone who has courage to take risks and is not afraid of pushing the team to try new tools. Always inclined towards new tech and gather all the information about new technologies and tools so that he is not left behind the tech advancements. He takes the ownership for his decisions and his observations skills are fantastic. He has a lot of patience and his decision making capabilities are worthy for much bigger roles for him to take in, he is a veteran in Gaming domain and his skills on QA and Project Management are rare.
+I worked with him for around 7.5 years which was also my first job and it was a joy working with Amol which is something that cannot vanish in a lifetime. I thoroughly enjoyed working with him. I learned a lot from him as each day as we faced common challenges for our teams and tackled them with our mutual brainstorming sessions.
+Cheers Amol!!
+                    </div>
+                    <div class="recommendation-date">Sept 20, 2022</div>
+                </div>
+            </div>
+            
+            <div class="carousel-nav">
+                <button class="nav-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="carousel-dots" id="carouselDots">
+                <!-- Dots will be generated by JavaScript -->
+            </div>
+         </div>
                 </div>
 
         <div class="profile-card">
@@ -1085,8 +1474,80 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('recommendationCarousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+            
+            const recommendations = document.querySelectorAll('.recommendation');
+            const totalItems = recommendations.length;
+            let currentIndex = 0;
+            
+            // Create dots
+            for (let i = 0; i < totalItems; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('data-index', i);
+                dotsContainer.appendChild(dot);
+            }
+            
+            const dots = document.querySelectorAll('.dot');
+            
+            // Update carousel position
+            function updateCarousel() {
+                carousel.scrollTo({
+                    left: currentIndex * carousel.offsetWidth,
+                    behavior: 'smooth'
+                });
+                
+                // Update active dot
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Next button click
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            });
+            
+            // Previous button click
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                updateCarousel();
+            });
+            
+            // Dot click
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    currentIndex = parseInt(this.getAttribute('data-index'));
+                    updateCarousel();
+                });
+            });
+            
+            // Auto slide every 5 seconds
+            setInterval(function() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            }, 5000);
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                updateCarousel();
+            });
+        });
+    </script>
 </body>
 </html>
+
 
 
 
