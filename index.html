@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullstack Game Development and Business Consulting | IND</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #37b6ff;
+            --secondary: #292747;
+            --accent: #00cec9;
+            --dark: #111111;
+            --darker: #0a0a0a;
+            --light: #f5f6fa;
+            --gray: #0c0a0a;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 10, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--light);
+        }
+        .logo .gold {
+            color: #FFD700; /* Classic gold hex */
+        }        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to top, rgba(194, 83, 132, 0.1), rgba(162, 155, 254, 0.3)), url('https://images.pexels.com/photos/267961/pexels-photo-267961.jpeg?_gl=1*v426ic*_ga*ODQ0MjAwNDAxLjE3NTY0OTEzOTI.*_ga_8JE65Q40S6*czE3NTY3NDUwOTMkbzQkZzEkdDE3NTY3NDUyNzQkajIzJGwwJGgw'); /* Replace with actual path */  			
+            background-size: cover;       /* Ensures image covers entire section */
+  			background-position: center;  /* Centers the image */
+  			background-repeat: no-repeat; /* Prevents tiling */
+  			padding: 100px 0;             /* Adds vertical space */
+  			color: white;                 /* Optional: ensures text is readable */
+        }
+            
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.2) 0%, rgba(10, 10, 10, 0) 50%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 650px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #b2bec3;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: top;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+            position: relative;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            color: #b2bec3;
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .exp-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4);
+        }
+        
+        .exp-badge span:first-child {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--darker);
+            background-image: url('https://images.pexels.com/photos/10492317/pexels-photo-10492317.jpeg?_gl=1*zgwar5*_ga*ODQ0MjAwNDAxLjE3NTY0OTEzOTI.*_ga_8JE65Q40S6*czE3NTY1MzQ1OTUkbzIkZzEkdDE3NTY1MzQ2MjUkajMwJGwwJGgw'); /* Replace with actual path */
+  			background-size: cover;       /* Ensures image covers entire section */
+  			background-position: center;  /* Centers the image */
+  			background-repeat: no-repeat; /* Prevents tiling */
+  			padding: 100px 0;             /* Adds vertical space */
+  			color: white;                 /* Optional: ensures text is readable */
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: linear-gradient(145deg, #1a1a1a, #222);
+            padding: 30px;
+            border-radius: 10px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: #b2bec3;
+            margin-bottom: 20px;
+        }
+        
+        /* Expertise Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background-color: var(--darker);
+        }
+        
+        .expertise-item {
+            background: linear-gradient(145deg, #1a1a1a, #222);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .expertise-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .expertise-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            text-align: center;
+            background: linear-gradient(to right, rgba(27, 13, 19, 0.1), rgba(11, 10, 31, 0.2)), url('https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            border-radius: 10px;
+            margin: 100px 0;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #b2bec3;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            font-family: 'Inter', sans-serif; /* Or any font you prefer */
+            font-size: 12px;
+            font-weight: 700;
+            text-align: right;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b2bec3;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--darker);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .exp-badge {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .exp-badge span:first-child {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+        /* mobile overrides moved to mobile-overrides.css */
+    </style>
+    <link rel="stylesheet" href="mobile-overrides.css">
+
+        <style>
+            .profile-card {
+                width: 100%;
+                max-width: 400px;
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                transition: transform 0.3s ease;
+            }
+            
+            .profile-card:hover {
+                transform: translateY(-5px);
+            }
+            
+            .profile-header {
+                position: relative;
+                padding: 30px 20px 60px;
+                text-align: center;
+                background: rgba(0, 0, 0, 0.4);
+            }
+            
+            .profile-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0.3;
+                z-index: -1;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 3px solid white;
+                box-shadow: 0 0 20px rgba(191, 255, 252, 0.8);
+                margin-bottom: 15px;
+            }
+            
+            .profile-name {
+                color: white;
+                font-size: 1.8rem;
+                margin-bottom: 5px;
+                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            }
+            
+            .profile-title {
+                color: #BFFFFC;
+                font-size: 1rem;
+                font-weight: 400;
+            }
+            
+            .profile-content {
+                padding: 20px;
+            }
+            
+            .xp-badge {
+                display: inline-flex;
+                align-items: center;
+                background: linear-gradient(45deg, #FF0080, #FF8C00);
+                color: white;
+                padding: 8px 15px;
+                border-radius: 50px;
+                margin-bottom: 20px;
+                font-weight: 600;
+                box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4);
+            }
+            
+            .xp-badge i {
+                margin-right: 8px;
+                font-size: 1.2rem;
+            }
+            
+            .profile-stats {
+                display: flex;
+                justify-content: space-around;
+                margin: 25px 0;
+            }
+            
+            .stat {
+                text-align: center;
+            }
+            
+            .stat-number {
+                display: block;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: white;
+                text-shadow: 0 0 10px rgba(191, 255, 252, 0.8);
+            }
+            
+            .stat-label {
+                font-size: 0.9rem;
+                color: #BFFFFC;
+            }
+            
+            .profile-description {
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.6;
+                margin-bottom: 25px;
+                text-align: center;
+            }
+            
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 20px;
+            }
+            
+            .social-link {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(45deg, #0077B5, #00A0DC);
+                color: white;
+                text-decoration: none;
+                font-size: 1.3rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 119, 181, 0.4);
+            }
+            
+            .social-link:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(0, 119, 181, 0.6);
+            }
+            
+            .view-profile-btn {
+                display: block;
+                width: 100%;
+                padding: 12px;
+                background: linear-gradient(45deg, #00B4DB, #0083B0);
+                color: white;
+                text-align: center;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                margin-top: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 180, 219, 0.4);
+            }
+            
+            .view-profile-btn:hover {
+                background: linear-gradient(45deg, #0083B0, #00B4DB);
+                box-shadow: 0 8px 20px rgba(0, 180, 219, 0.6);
+                transform: translateY(-2px);
+            }
+
+            .console-strip {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 16px;
+                padding: 10px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                margin-bottom: 40px;
+            }
+            .icon-wrapper {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0px;
+                background: rgba(255, 255, 255, 0.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            .nintendo .icon-wrapper { background: linear-gradient(135deg, #e60000, #8b0000); }
+            .xbox .icon-wrapper { background: linear-gradient(135deg, #107c10, #0e470e); }
+            .playstation .icon-wrapper { background: linear-gradient(135deg, #426193, #1152c2); }
+            .luna .icon-wrapper { background: linear-gradient(135deg, #c62aff, #9d00a8); }
+            .stadia .icon-wrapper { background: linear-gradient(135deg, #f8f8f8, #ffe8e9); }
+            .pc .icon-wrapper { background: linear-gradient(135deg, #666666, #333333); }
+            
+            .carousel-container {
+            position: absolute;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            padding: 10px 20px;
+            width: 100%;
+            margin-top: 20px;
+            }
+        
+            .carousel {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+            margin: 0 -15px;
+    
+            }
+        
+            .carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+            }
+        
+            .recommendation {
+            flex: 0 0 calc(100% - 30px);
+            margin: 0 15px;
+            padding: 5px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #0077b5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+        
+            .recommendation:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+        
+            .recommender-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            }
+        
+            .recommender-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #0077b5;
+            font-size: 24px;
+            flex-shrink: 0;
+            }
+        
+            .recommender-details {
+            flex-grow: 1;
+            }
+        
+            .recommender-name {
+            font-weight: 600;
+            color: #0077b5;
+            margin-bottom: 5px;
+            font-size: 14px;
+            }
+        
+            .recommender-title {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+            }
+        
+            .recommender-company {
+            color: #888;
+            font-size: 8px;
+            }
+        
+            .recommendation-text {
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-size: 12px;
+            position: relative;
+            padding-left: 20px;
+            }
+        
+            .recommendation-text:before {
+            content: "“";
+            font-size: 50px;
+            color: #0077b5;
+            position: absolute;
+            left: -10px;
+            top: -15px;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+            }
+        
+            .recommendation-date {
+            color: #888;
+            font-size: 13px;
+            text-align: right;
+            }
+        
+            .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top:10px;
+            }
+        
+            .nav-btn {
+            background: #0077b5;
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            }
+        
+            .nav-btn:hover {
+            background: #005582;
+            }
+        
+            .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            }
+        
+            .dot {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            }
+        
+            .dot.active {
+            background: #0077b5;
+            }
+        
+            .linkedin-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #0077b5;
+            font-weight: 600;
+            }
+        
+            .linkedin-brand i {
+            font-size: 24px;
+            margin-right: 8px;
+            }
+        
+            @media (max-width: 768px) {
+            .carousel-container {
+                padding: 20px;
+            }
+            
+            .recommendation {
+                flex: 0 0 calc(100% - 20px);
+                margin: 0 10px;
+            }
+            
+            .recommender-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .recommender-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .rounded-avatar {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #fff;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+        }
+        </style>
+
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">FULL<span class="gold">$</span><span>TACK</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+        <div class="container"> 
+                    <h4>Your end-to-end video game development and business consultancy partner</h4>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Turn Your Game Vision into <span>Reality</span></h1>
+                <p>Over two Decades of end to end game production and testing expertise now available to help independent developers and studios to create exceptional gaming experiences.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn">Start a Project</a>
+                    <a href="#services" class="btn btn-outline">Our Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Game Industry Expert & Consultant</h3>
+                    <p>I'm Amol More, a seasoned game industry professional with over two decades of combined experience in Production and Quality Control at Ubisoft, working on AA and AAA titles. I have worked on end to end feature delivery on multimillion IPs as Producer</p>
+                    <p>My expertise spans the entire game development lifecycle - from concept to console. I've managed cross-functional teams, implemented Agile-Scrum methodologies, and ensured the successful delivery of high-quality gaming experiences.</p>
+                    <p>Now, through Fullstack Consulting, I'm leveraging my expertise to help independent developers and studios overcome production challenges, optimize workflows, and bring their creative visions to life.</p>
+                    <a href="#contact" class="btn">Let's Connect</a>
+                    
+                    
+                    <div class="carousel-container">
+            <div class="carousel" id="recommendationCarousel">
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/samira.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Samira Chabani</div>
+                            <div class="recommender-title">Group Senior HR Director</div>
+                            <div class="recommender-company">Currently @Savvy Games Group, Saudi Arabia</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        As the HR Director of Ubisoft India studios at this time, I can attest that Amol's progression from Quality Control to Production demonstrates remarkable potential and expertise, with a strong focus on player experience. This career growth highlights not only his dedication and adaptability but also his development into roles with greater responsibility. Amol was a highly collaborative and committed manager who played a key role in leading a large team on AAA game testing. His clear and transparent communication fostered trust and alignment across teams, ensuring high standards and accountability. With his extensive experience and strategic approach, he consistently delivered strong results, contributing to both team performance and studio growth. Amol's expertise, dedication, and integrity made him an invaluable asset to the organization and a respected leader at Ubisoft India."
+                    </div>
+                    <div class="recommendation-date">Dec 10, 2023</div>
+                </div>
+                
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/abhijeet.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Abhijeet Bajaj</div>
+                            <div class="recommender-title">Managing Director</div>
+                            <div class="recommender-company">Currently @Rightsline India</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        I worked very closely with Amol to expand the technical standards division offerings within Ubisoft India quality department. Amol was critical in creating a strong set of processes and an efficient team under him to achieve this goal. He is a data-driven, technically strong leader who can drive changes at team, project and department level effectively. 
+It was a pleasure working with him and I would highly recommedn him for his project management ability and deep knowledge of production processes at each stage of development.
+                    </div>
+                    <div class="recommendation-date">Nov 4, 2024</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/mircea.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Mircea Nutu</div>
+                            <div class="recommender-title">Lead Data Analyst</div>
+                            <div class="recommender-company">Currently @Ubisoft Bucharest</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        I had the opportunity to work with Amol at Ubisoft Mumbai, where he was a key member of the production team. I can confidently recommend him as a reliable, efficient, and forward-thinking Producer.
+
+With extensive experience across game testing and production on console and PC platforms, Amol brought strong project management, stakeholder coordination, and deep game development insight to every project.
+
+He is also naturally curious and process-driven, always exploring automation tools and smarter workflows to make production more efficient.
+
+I highly recommend Amol for any role that demands leadership, innovation, and delivery excellence.
+                    </div>
+                    <div class="recommendation-date">Oct 14, 2025</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/sashi.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Sashi Menon</div>
+                            <div class="recommender-title">Studio Manager</div>
+                            <div class="recommender-company">Currently @Ubisoft Philippines</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        As Managing Director, I truly valued working with Amol. He was instrumental in scaling our QC operations from 3 to 10 services and growing the team from 15 to over 100 specialists. His dedication, strategic insight, and transparent leadership earned deep respect across studios. Amol consistently delivered excellence on AA and AAA titles, driving a culture of ownership and innovation. With a strong blend of creativity, empathy and focus, he elevated everything from onboarding to service design, making him a trusted partner and a standout leader.
+                    </div>
+                    <div class="recommendation-date">Sept 10, 2025</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/jpp.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Jean-Philippe Pieuchot</div>
+                            <div class="recommender-title">Vice President</div>
+                            <div class="recommender-company">Currently @Steer Studios</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        My collaboration with Amol carried over a long time and we worked together at building the 1st party compliance department at Ubisoft Pune Studio.
+Our discussions were very productive, and he was able to look at an issue/situation from different angles and based on his observations and suggestions, we modified ideas or went with better course of action.
+During this time, Amol displayed maturity when working with people and the fairness he showed towards people were the most important reasons for the good dynamics in the teams he managed. Due to this people trusted and followed him.
+I found my collaboration with Amol very good, as he was a very reliable partner and the steps agreed were always achieved.
+                    </div>
+                    <div class="recommendation-date">Dec 31, 2023</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/tomal.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Tomal Banerjee</div>
+                            <div class="recommender-title">Producer</div>
+                            <div class="recommender-company">Currently @Ubisoft India</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol has been my direct manager for almost 5 years of my career. It has always been a learning experience working under him. He challenged us in different ways to understand our perspective, test our skills and push us to think of innovative solutions.
+Amol is a detail oriented person, good with root cause analysis, change management, time management, people management, risk management, conflict resolution. He is an excellent people manager and people working with him never feel the barrier between a manager and team member. He is highly approachable and always open for discussion.
+Amol has a vast experience of the games industry and has been working for more than 12+ years in the same. He has worked with diverse teams and individuals throughout his career which helps him blend easily in any new team or project. 
+Amol does not shy away from challenges and always taken them head on! He leads from the front and also enables team members to learn leadership qualities.
+He would definitely be an asset to any team or organization he works with. Good luck!
+                    </div>
+                    <div class="recommendation-date">Feb 16, 2023</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/francesca.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Francesca Scelfo</div>
+                            <div class="recommender-title">Producer</div>
+                            <div class="recommender-company">Currently @Ubisoft Paris</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol has been a key factor for our technical collab between Singapore and India.
+What I appreciated the most is his energy, his ability to go and chase information until we get a satisfying answer. He has been a reliable point of contact and project manager. Would 100% work with him again.
+5 stars.</div>
+                    <div class="recommendation-date">Sept 10, 2025</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/yvan.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Yvan Laval</div>
+                            <div class="recommender-title">Technical Director</div>
+                            <div class="recommender-company">Currently @Ubisoft Singapore</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol is a very precise and reliable Associate Producer, always able to provide the relavant information and keep up his team motivation even in the more complicated moments. Good communicator and always with a smile on his face, precious partner for collaboration and good at finding solutions for tricky situations. 
+                    </div>
+                    <div class="recommendation-date">Dec 05, 2022</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/razvan.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Razvan Rotunjanu</div>
+                            <div class="recommender-title">Chief Operating Officer</div>
+                            <div class="recommender-company">Currently @WHYTTEST Bucharest</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Working with Amol as part of Pune QC seniors to put the basis and then enlarge the studio's footprint within the Ubisoft Group has been a real pleasure. His overall organization, passion for games, good understanding of the business and interest shown towards its technicalities represent just a few of Amol strengths, which coupled with his very good social skills and nice personality make him a great fit to any organization, that I truly recommend!
+                    </div>
+                    <div class="recommendation-date">Oct 14, 2022</div>
+                </div>
+                    <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/pierre.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Pierre Jouen</div>
+                            <div class="recommender-title">Vice President</div>
+                            <div class="recommender-company">Currently @Ubisoft HQ</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol is an industry veteran and a true quality control advocate.
+As QC Manager for specialized teams, Amol has build a diverse team of world class experts over the years.
+Amol is a problem solver and is always keen to build new solutions, innovate or try a different approach.
+It was a pleasure working with Amol within QC teams, he is a great leader and people manager.
+                    </div>
+                    <div class="recommendation-date">Jul 29, 2022</div>
+                </div>
+                                    <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/amelie.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Amelie Barazer</div>
+                            <div class="recommender-title">Producer</div>
+                            <div class="recommender-company">Currently @Ubisoft Paris</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol is doing a great job as an Associate Producer. He’s passionate about the projects he’s following, rigourous and good at reporting and anticipating potential dependencies. He has strong knowledge with JIRA and has the ability to identify the right stakeholders to inform or contact. I’ve been collaborating with him and his team on two unannounced project and we build a trustful relationship between Ubisoft Mumbai and Ubisoft HQ.
+                    </div>
+                    <div class="recommendation-date">Jun 2, 2022</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/aniruddha.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Aniruddha Pawar</div>
+                            <div class="recommender-title">QC Director</div>
+                            <div class="recommender-company">Currently @Ubisoft India</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol has been an enthusiastic and thorough manager, he's innovative and pushes his teams towards continuous improvement. He has a great relationship with his partners and team thanks to his interpersonal skills. As a leader within Ubisoft India he always led by example, owing to his overall technical skills and soft skills he is a valuable contributor to our projects. The success achieved in his job required extensive knowledge and dedication. He learns quickly and I would have no doubt in working with Amol once again in the future.
+                    </div>
+                    <div class="recommendation-date">Sept 20, 2022</div>
+                </div>
+                <div class="recommendation">
+                    <div class="recommender-info">
+                        <div class="recommender-avatar">
+                            <img src="images/apoorva.jpeg" alt="PC" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="recommender-details">
+                            <div class="recommender-name">Apoorva Sao</div>
+                            <div class="recommender-title">Head of QA APAC</div>
+                            <div class="recommender-company">Currently @Accedo Hong-Kong</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-text">
+                        Amol is a great leader who ensures that everything runs smoothly and his team is taken care of, a very approachable person who knows how a team should be nourished with growth plans and strategies in place. He has a good long-term thinking about the team and the drive to tackle harder problems. He is someone who has courage to take risks and is not afraid of pushing the team to try new tools. Always inclined towards new tech and gather all the information about new technologies and tools so that he is not left behind the tech advancements. He takes the ownership for his decisions and his observations skills are fantastic. He has a lot of patience and his decision making capabilities are worthy for much bigger roles for him to take in, he is a veteran in Gaming domain and his skills on QA and Project Management are rare.
+I worked with him for around 7.5 years which was also my first job and it was a joy working with Amol which is something that cannot vanish in a lifetime. I thoroughly enjoyed working with him. I learned a lot from him as each day as we faced common challenges for our teams and tackled them with our mutual brainstorming sessions.
+Cheers Amol!!
+                    </div>
+                    <div class="recommendation-date">Sept 20, 2022</div>
+                </div>
+            </div>
+            
+            <div class="carousel-nav">
+                <button class="nav-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="carousel-dots" id="carouselDots">
+                <!-- Dots will be generated by JavaScript -->
+            </div>
+         </div>
+                </div>
+
+        <div class="profile-card">
+                <div class="profile-header">
+                    <img src="https://images.pexels.com/photos/17904605/pexels-photo-17904605.jpeg?_gl=1*1ljsuk1*_ga*ODQ0MjAwNDAxLjE3NTY0OTEzOTI.*_ga_8JE65Q40S6*czE3NTY0OTEzOTIkbzEkZzEkdDE3NTY0OTE4ODMkajU5JGwwJGgw" alt="Background" class="profile-bg">
+                    <img src="images/displaypic.jpg" alt="Game Developer" class="profile-image">
+                    <h2 class="profile-name">Amol More</h2>
+                    <p class="profile-title">Producer | QC Manager | Principal Consultant | CTO</p>
+                </div>
+                
+                <div class="profile-content">
+                    <div class="xp-badge">
+                        <i class="fas fa-award"></i>
+                        <span>20 Years XP</span>
+                    </div>
+                    
+                    <p class="profile-description">
+                        Passionate game developer/tester/gamer with two decades of service excellence in creating immersive gaming experiences across multiple platforms.
+                    </p>
+                    
+            <div class="console-strip">
+                <div class="console nintendo">
+                        <div class="icon-wrapper">
+                            <img src="https://img.icons8.com/?size=100&id=49777&format=png&color=000000" alt="Nintendo" style="width: 60%; height: 60%; object-fit: contain;">
+                        </div>
+                </div>
+            
+                <div class="console xbox">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=P74xrK8LVXNo&format=png&color=000000" alt="Microsoft" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+            
+                <div class="console playstation">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=RrF4U2ogcU6A&format=png&color=000000" alt="Sony" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+            
+                <div class="console luna">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=A6q4SjCUkb11&format=png&color=000000" alt="Amazon" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+            
+                <div class="console stadia">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=LmMXAgyoTVLO&format=png&color=000000" alt="Google" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+            
+                <div class="console pc">
+                    <div class="icon-wrapper">
+                        <img src="https://img.icons8.com/?size=100&id=9913&format=png&color=000000" alt="PC" style="width: 60%; height: 60%; object-fit: contain;">
+                    </div>
+                </div>
+                <h5> Platform Experience</h5>
+            </div>
+
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">AAA Credits</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">8K hrs</span>
+                            <span class="stat-label">Of Personal Gaming</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.exophase.com/xbox/user/amo1mor3/" class="social-link">
+                            <i class="fab fa-xbox"></i>
+                        </a>
+                        <a href="https://www.exophase.com/steam/user/modernstudboy/" target="_blank" class="social-link">
+                            <i class="fab fa-steam-symbol"></i>
+                        </a>
+                        <a href="https://www.exophase.com/psn/user/dil_mange_amore/" class="social-link">
+                            <i class="fab fa-playstation"></i>
+                        </a>
+                        <a href="https://www.mobygames.com/person/370360/amol-more/" class="social-link">
+                            <i class="fa fa-credit-card-alt"></i>
+                        </a>
+                    </div>
+                    
+                    <a href="https://www.linkedin.com/in/amol-more-b0202622/" target="_blank" class="view-profile-btn">
+                        View LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>End-to-End Game Production</h3>
+                    <p>Comprehensive production support from concept to launch, including milestone planning, risk mitigation, and release management.</p>
+                    <ul>
+                        <li>Agile-Scrum implementation</li>
+                        <li>Cross-functional team leadership</li>
+                        <li>Business case preparation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h3>Quality Assurance & Compliance</h3>
+                    <p>Expert guidance on QA processes, compliance requirements for all platforms, and scalable testing strategies.</p>
+                    <ul>
+                        <li>First-party compliance</li>
+                        <li>End-to-end testing</li>
+                        <li>Live QA support</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Business & Strategic Development</h3>
+                    <p>Strategic planning and business development support to help your studio grow and succeed in the competitive game industry.</p>
+                    <ul>
+                        <li>Budgeting & resource planning</li>
+                        <li>Talent acquisition</li>
+                        <li>Data analytics & KPI tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="section" id="expertise">
+        <div class="container">
+            <div class="section-title">
+                <h2>Areas of Expertise</h2>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Production Management</h3>
+                </div>
+                
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Team Leadership</h3>
+                </div>
+                
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Resource Planning</h3>
+                </div>
+                
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3>Business Development</h3>
+                </div>
+                
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Quality Assurance</h3>
+                </div>
+                
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Compliance</h3>
+                </div>
+                
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Agile-Scrum</h3>
+                </div>
+                
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Stakeholder Management</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Level Up Your Game Development?</h2>
+            <p>Whether you're an independent developer or an established studio, I can help you navigate production and QC challenges and create outstanding gaming experiences.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-outline">Contact info...</a>
+                    <a href="https://outlook.office.com/book/Connectwithus@arcflameinteractive.com/?ismsaljsauthenabled" target="_blank"" class="btn">📅 Book Teams Meet</a>
+                </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Let's Collaborate</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Want to know more?</h3>
+                    <p>I'm currently available for consulting projects and mentorship opportunities. Whether you need guidance on a specific aspect of game development or comprehensive production support, I'd love to hear about your project.</p>
+                    <p>Reach out to discuss how we can work together to bring your game vision to life.</p>
+                    
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> amol.more@fullstack.pub</p>
+                        <p><i class="fas fa-phone"></i> +91-9527996300</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Pune | Mumbai, India</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/amol-more-b0202622/" title="Connect on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbAwtwF2f3EGLCKzYM3n" title="Join our Whatsapp Channel"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:?subject=Check%20out%20Fullstack%20Development%20%26%20Consulting&body=Hey%2C%20I%20found%20this%20site%20you%20might%20like%3A%20https%3A%2F%2Ffullstack.pub" title="Share via Email"><i class="fa fa-share"></i></a>
+                        <a href="https://outlook.office.com/book/Connectwithus@arcflameinteractive.com/?ismsaljsauthenabled" title="Book Teams Meeting"><i class="fab fa-teamspeak"></i></a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/33606488/pexels-photo-33606488.jpeg?_gl=1*29q1x4*_ga*ODQ0MjAwNDAxLjE3NTY0OTEzOTI.*_ga_8JE65Q40S6*czE3NTY0OTEzOTIkbzEkZzEkdDE3NTY0OTE1MzYkajYwJGwwJGgw" style="width: 70%; height: auto;" alt="Game Collaboration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Fullstack Consulting</h3>
+                    <p>Empowering developers to create exceptional gaming experiences through expert guidance and production support.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#expertise">Expertise</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <a href="#services">Game Production</a>
+                    <a href="#services">Quality Assurance</a>
+                    <a href="#services">Business Development</a>
+                    <a href="#services">Mentorship</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <p>amol.more@fullstack.pub</p>
+                    <p>+91-9527996300</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/amol-more-b0202622/" title="Connect on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbAwtwF2f3EGLCKzYM3n" title="Join our Whatsapp Channel"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:?subject=Check%20out%20Fullstack%20Development%20%26%20Consulting&body=Hey%2C%20I%20found%20this%20site%20you%20might%20like%3A%20https%3A%2F%2Ffullstack.pub" title="Share via Email"><i class="fa fa-share"></i></a>
+                        <a href="https://outlook.office.com/book/Connectwithus@arcflameinteractive.com/?ismsaljsauthenabled" title="Book Teams Meeting"><i class="fab fa-teamspeak"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Fullstack Development and Publishing. All rights reserved.</p>
+                <span class="company">BLACKHAWK CORPORATION PVT LTD&reg;</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile nav when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('recommendationCarousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+            
+            const recommendations = document.querySelectorAll('.recommendation');
+            const totalItems = recommendations.length;
+            let currentIndex = 0;
+            
+            // Create dots
+            for (let i = 0; i < totalItems; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('data-index', i);
+                dotsContainer.appendChild(dot);
+            }
+            
+            const dots = document.querySelectorAll('.dot');
+            
+            // Update carousel position
+            function updateCarousel() {
+                carousel.scrollTo({
+                    left: currentIndex * carousel.offsetWidth,
+                    behavior: 'smooth'
+                });
+                
+                // Update active dot
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Next button click
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            });
+            
+            // Previous button click
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                updateCarousel();
+            });
+            
+            // Dot click
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    currentIndex = parseInt(this.getAttribute('data-index'));
+                    updateCarousel();
+                });
+            });
+            
+            // Auto slide every 5 seconds
+            setInterval(function() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            }, 5000);
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                updateCarousel();
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
